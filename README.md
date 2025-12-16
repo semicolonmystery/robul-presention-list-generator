@@ -49,6 +49,16 @@ Aplikace se otevře na `http://localhost:5173/`
 
 Výsledek: Jeden DOCX soubor s vyplněnými daty ve formátu "Datum: 27.11.2025, 8:00 - 14:00 hod." na každé stránce.
 
+## Vlastní šablona
+
+Chcete-li použít vlastní šablonu:
+
+1. Vytvořte nebo upravte DOCX soubor s textem "Datum:" na místě, kde chcete mít vyplněné datum
+2. Uložte soubor jako `public/template.docx` (nahraďte stávající soubor)
+3. Aplikace automaticky použije novou šablonu
+
+**Důležité:** Text "Datum:" v šabloně bude nahrazen formátovaným datem a časem (např. "Datum: 27.11.2025, 8:00 - 14:00 hod.").
+
 ## Jak to funguje
 
 1. Aplikace načte šablonu `public/template.docx` (původní soubor: `Prezencni listina_Robul.docx`)
