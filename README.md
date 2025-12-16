@@ -1,6 +1,6 @@
 # Generátor Prezenční Listiny
 
-React aplikace pro automatické generování prezenčních listin s vyplněnými daty podle zadaných vzorů.
+React aplikace pro automatické generování prezenčních listin s vyplněnými daty podle zadaných vzorů. Aplikace vezme šablonu DOCX souboru, vyplní do něj data podle zadaného vzoru a vygeneruje jeden sloučený DOCX soubor se všemi stránkami.
 
 ## Instalace
 
@@ -22,16 +22,18 @@ Aplikace se otevře na `http://localhost:5173/`
 2. **Vyberte dny v týdnu**: Zaškrtněte dny, kdy chcete generovat stránky (např. pouze úterý)
 3. **Nastavte čas**: Zadejte časový rozsah (např. 8:00 - 14:00)
 4. **Přidejte další období**: Klikněte na "+ Přidat další období" pro více vzorů s různými časy
-5. **Generujte PDF**: Klikněte na "Generovat PDF"
+5. **Generujte DOCX**: Klikněte na "Generovat DOCX"
+6. **Konverze do PDF**: Otevřete vygenerovaný DOCX v Microsoft Word a exportujte jako PDF (volitelné)
 
 ## Funkce
 
 - ✅ Více období s různými vzory
-- ✅ Výběr konkrétních dní v týdnu
-- ✅ Nastavitelný časový rozsah
-- ✅ Náhled generovaných dat
-- ✅ Automatická náhrada "Datum:" v PDF
-- ✅ Jeden PDF soubor se všemi stránkami
+- ✅ Výběr konkrétních dní v týdnu (pondělí až neděle)
+- ✅ Nastavitelný časový rozsah pro každé období
+- ✅ Náhled generovaných dat před exportem
+- ✅ Automatická náhrada "Datum:" v DOCX šabloně
+- ✅ Jeden DOCX soubor se všemi stránkami sloučenými dohromady
+- ✅ Zachování veškerého formátování, obrázků a stylů z původní šablony
 
 ## Příklad
 
@@ -45,9 +47,18 @@ Aplikace se otevře na `http://localhost:5173/`
 - Dny: Pondělí, Středa, Pátek
 - Čas: 9:00 - 15:00
 
-Výsledek: PDF s vyplněnými daty ve formátu "Datum: 27.11.2025, 8:00 - 14:00 hod."
+Výsledek: Jeden DOCX soubor s vyplněnými daty ve formátu "Datum: 27.11.2025, 8:00 - 14:00 hod." na každé stránce.
+
+## Jak to funguje
+
+1. Aplikace načte šablonu `public/template.docx` (původní soubor: `Prezencni listina_Robul.docx`)
+2. Pro každé datum ve vybraném období vytvoří kopii šablony
+3. V každé kopii nahradí text "Datum:" za formátované datum a čas
+4. Všechny kopie sloučí do jednoho DOCX souboru
+5. Výsledný soubor se stáhne do počítače
 
 ## Technologie
 
 - React + Vite
-- pdf-lib (manipulace s PDF)
+- PizZip (manipulace s DOCX soubory)
+- file-saver (stahování souborů)
